@@ -1,16 +1,27 @@
-public class Cliente {
+import lombok.Getter;
+import lombok.Setter;
 
-    private String nome;
+public abstract class Cliente implements iCliente{
 
-    public Cliente(String nome){
+    @Getter @Setter
+    protected String nome;
+    @Getter @Setter
+    protected String tipo;
+
+    public Cliente(String nome, String tipo) {
+        this.tipo = tipo;
         this.nome = nome;
     }
 
-    public String getNome() {
-        return nome;
+    @Override
+    public Conta abrirContaCorrente() {
+        Conta cc = new ContaCorrente(this);
+        return cc;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    @Override
+    public Conta abrirContaPoupanca() {
+        Conta cp = new ContaPoupanca(this);
+        return cp;
     }
 }

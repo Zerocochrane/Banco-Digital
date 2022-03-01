@@ -1,11 +1,18 @@
+import lombok.Getter;
+import lombok.Setter;
+
 public abstract class Conta implements iConta{
 
     protected static final int AGENCIA_PADRAO = 1;
     private static int SEQUENCIAL = 1;
 
+    @Getter @Setter
     protected int agencia;
+    @Getter @Setter
     protected int numero;
+    @Getter @Setter
     protected double saldo;
+    @Getter @Setter
     protected Cliente cliente;
 
     public Conta(Cliente cliente){
@@ -19,13 +26,11 @@ public abstract class Conta implements iConta{
     public void sacar(double valor) {
         this.saldo -= valor;
     }
-    @
-    Override
+    @Override
     public void depositar(double valor) {
         this.saldo += valor;
     }
-    @
-    Override
+    @Override
     public void transferir(iConta contaDestino, double valor) {
         this.sacar(valor);
         contaDestino.depositar(valor);
@@ -36,26 +41,5 @@ public abstract class Conta implements iConta{
         System.out.println(String.format("Agencia %d", this.agencia));
         System.out.println(String.format("Numero %d", this.numero));
         System.out.println(String.format("Saldo %.2f", this.saldo));
-    }
-
-
-    public int getAgencia() {
-        return agencia;
-    }
-    public int getNumero() {
-        return numero;
-    }
-    public double getSaldo() {
-        return saldo;
-    }
-
-    public void setAgencia(int agencia) {
-        this.agencia = agencia;
-    }
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
     }
 }

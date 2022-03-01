@@ -1,15 +1,25 @@
 public class Main {
     public static void main(String[] args){
-        Cliente cliente1 = new Cliente("João");
-        Cliente cliente2 = new Cliente("Maria");
+        Banco bb = new Banco("Banco do Brasil");
 
-        Conta cc = new ContaCorrente(cliente1);
-        Conta cp = new ContaPoupanca(cliente2);
+        Cliente cliente1 = new PessoaFisica("João", "PF");
+        Cliente cliente2 = new PessoaFisica("Maria", "PF");
+        Cliente cliente3 = new PessoaJuridica("MRS", "PJ");
 
-        cc.depositar(100);
+        Conta cc = cliente1.abrirContaCorrente();
+        Conta cp = cliente2.abrirContaPoupanca();
+        Conta pj = cliente3.abrirContaCorrente();
+
+        bb.adicionarConta(cc);
+        bb.adicionarConta(cp);
+        bb.adicionarConta(pj);
+
+        cc.depositar(150);
         cc.transferir(cp, 100);
 
         cc.extrato();
         cp.extrato();
+
+        bb.imprimirClientes();
     }
 }
